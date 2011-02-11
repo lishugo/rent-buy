@@ -3,7 +3,7 @@
     <title>rent or buy</title>
     <script src="protovis-d3.2.js" type="text/javascript"></script>
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAYZ9eMYFYusxZt-1RKXLI7RQGpXqX26B62_lhdlIUxPTUm0CSORRw1BkwdprB1xQ3Xa8KfbgKAacxlw" type="text/javascript"></script>
-    <script src="house.js" type="text/javascript"></script>
+    <script src="city_stats.js" type="text/javascript"></script>
     <style type="text/css">
 
 body {
@@ -29,8 +29,8 @@ var colors = {
 
 codes.forEach(function(x) colors[x.code] = colors[x.category]);
 
-function Canvas(rentbuy) {
-  this.rentbuy = rentbuy;
+function Canvas(city_stats) {
+  this.city_stats = city_stats;
 }
 
 Canvas.prototype = pv.extend(GOverlay);
@@ -46,8 +46,8 @@ Canvas.prototype.redraw = function(force) {
   if (!force) return;
   var c = this.canvas, m = this.map, r = 20;
 
-  /* Get the pixel locations of the rentbuy. */
-  var pixels = this.rentbuy.map(function(d) {
+  /* Get the pixel locations of the city_stats. */
+  var pixels = this.city_stats.map(function(d) {
       return m.fromLatLngToDivPixel(new GLatLng(d.lat, d.lon));
     });
 
@@ -66,7 +66,7 @@ Canvas.prototype.redraw = function(force) {
       .left(-x.min)
       .top(-y.min)
     .add(pv.Panel)
-      .data(this.rentbuy)
+      .data(this.city_stats)
     .add(pv.Dot)
       .left(function() pixels[this.parent.index].x)
       .top(function() pixels[this.parent.index].y)
@@ -80,13 +80,13 @@ Canvas.prototype.redraw = function(force) {
 };
 
 /* Restrict minimum and maximum zoom levels. */
-G_NORMAL_MAP.getMinimumResolution = function() 11;
+G_NORMAL_MAP.getMinimumResolution = function() 4;
 G_NORMAL_MAP.getMaximumResolution = function() 14;
 
 var map = new GMap2(document.getElementById("map"));
-map.setCenter(new GLatLng(37.78, -122.22), 12);
+map.setCenter(new GLatLng(35, 112), 5);
 map.setUI(map.getDefaultUI());
-map.addOverlay(new Canvas(rentbuy));
+map.addOverlay(new Canvas(city_stats));
 
     </script>
   </head>
