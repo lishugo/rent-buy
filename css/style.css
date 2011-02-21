@@ -1,0 +1,218 @@
+body {
+	margin: 0;
+	padding: 0;
+	display: table;
+	height: 100%;
+	width: 100% !important;
+	font: 12px/100% Helvetica Neue, sans-serif;
+	background: #e6e6e6;
+	color: #666;
+}
+
+.clearBoth {
+	clear: both;
+}
+
+a {
+	color: #659a41;
+}
+
+a:hover {
+	color: #51aee1;
+}
+
+.hiddenLink {
+  color: #666;
+  text-decoration: none;
+}
+
+#center {
+	width: 838px;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+}
+
+#header {
+	width: 100%;
+	height: 240px;	
+	margin: auto;
+	padding-top: 20px;
+	display: block;
+	text-align: left;
+}
+
+#logo {
+	float: left;
+	width: 70%;
+}
+
+#logo img {
+  border: 0px;
+}
+
+#title {
+	color: #659a41;
+	font: 44px Helvetica Neue, sans-serif;
+	font-weight: bold;
+}
+
+#likes {
+	width: 30%;
+	padding-top: 28px;
+	float: left;
+}
+
+#facebookLike {
+	padding: 0px;
+	float: right;
+}
+
+#twitterLike {
+	padding: 0px;
+	float: right;
+}
+
+.intro {
+	display:block;
+	float:left;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 0px;
+	line-height: 16px;
+	text-align: left;
+}
+
+#uiMap {
+	float: right;
+	padding-top: 10px;
+}
+
+#scaleRadio {
+	margin-right: 3px;
+}
+
+.radioModule {
+	float:right;
+}
+
+.radioTitle {
+	padding: 2px;
+	padding-left: 13px;
+	color: #BBB;
+	font: 20px Helvetica Neue, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#uiChart {
+	width: 100%;
+	padding-top: 38px;
+	margin: auto;
+	float: left;
+}
+
+#leftPicker {
+	float: left;
+}
+
+#rightPicker {
+	margin-right: 3px;
+	float: right;
+}
+
+#chartInfographic {
+	width: 100%;
+}
+
+#stackChart {
+	float: left;
+	margin-top: 6px;
+	margin-bottom: 3px;
+	width: 100%;
+    -moz-border-radius: 18px; 
+	-webkit-border-radius: 18px; 
+	border-radius: 18px;
+	background : #FFF;
+}
+
+#fig {
+	display: block;
+	width: 100%;
+	height: 756px;
+	position: relative;
+	margin: auto;
+	background-image: url('../img/china_outline_big.png');
+	background-repeat: no-repeat;
+}
+
+#fig img {
+	padding: 1px;
+}
+
+#floaterWrapper {
+  margin: 0 auto;
+}
+
+#floaterText {
+  width: 839px;
+  margin: 0 -15px;
+  padding: 15px;
+  position: fixed;
+  bottom: -60px;
+  z-index: 10;
+  cursor: pointer;
+  background: #999;
+  font-size: 18px;
+  color: #FFF;
+}
+
+#floaterText:hover {
+  background: #AAA;
+}
+
+.footerText {
+	display: block;
+	color: #999;
+	font: 12px Helvetica Neue, Helvetica, Arial, sans-serif;
+	padding-left: 30px;
+	padding-bottom: 30px;
+	text-align: left;
+}
+
+.tooltip {
+	color: #FFF;
+	padding: 5px;
+	padding-top: 5px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	font: 12px Helvetica Neue, Helvetica, Arial, sans-serif;
+	text-align: left;
+}
+
+.tipsy-inner {
+	max-width: 300px;
+	text-align: left;
+	font-size: 12px;
+	padding: 10px;
+	line-height: 14px;
+}
+
+.tooltipTitle {
+	min-width: 160px;
+	font-size: 24px; 
+	font-weight:bold; 
+	padding: 0 2 8 0px;
+	color: #FFF;
+}
+
+.tooltipSuggestion {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.tooltipValue {
+	text-align:right;
+	float:right;
+}

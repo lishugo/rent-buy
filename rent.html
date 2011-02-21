@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+    <title>Rent vs. Buy Index</title> 
+    <script type="text/javascript" src="lib/protovis-d3.2.js"></script> 
+    <script type="text/javascript" src="lib/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.8.7.custom.min.js"></script> 
+    <script type="text/javascript" src="lib/tipsy/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="js/tipsy.js"></script>
+
+    <script type="text/javascript" src="js/city_lowres.js"></script> 
+    <script type="text/javascript" src="js/city_stats.js"></script> 
+    <script type="text/javascript" src="js/city_borders.js"></script> 
+    <script type="text/javascript" src="js/vis.js"></script>
+    <script type="text/javascript" src="js/vismap.js"></script>
+    <script type="text/javascript" src="js/vischart.js"></script>
+    <style type="text/css"> 
+		@import url("css/jquery-ui-1.8.7.custom.css");
+		@import url("css/tipsy.css");
+		@import url("css/style.css");
+    </style> 
+	<style>
+	
+	</style>
+  </head> 
+  <body>
+
+  <div id="center">
+	<div id="header"> 
+	
+		<div id="logo">
+			<a href="http://www.trulia.com/"><img src="images/trulia_logo.png" alt="real estate and apartments for rent" /></a>
+			<span id="title">Rent vs. Buy</span>
+		</div>
+		<div class="clearBoth"></div>
+		<div class="intro">
+			<a href="http://info.trulia.com/index.php?s=43&item=113">Trulia's Q1 2011 Rent vs. Buy Index</a> provides guidance to help you make a smart decision on whether it is better to rent or buy in each of America's 50 largest cities by population. The Rent:Buy Ratio is calculated by using the median list price compared with the median rent on two-bedroom apartments, condos and townhomes listed on <a href="http://www.trulia.com">Trulia.com</a>. Click <a href="http://info.trulia.com/index.php?s=55" target="_new" rel="nofollow">here</a> for the full methodology.
+			<br /><br />
+
+			Click on the tabs above the interactive map to see the differences between renting for a year and buying a similar property. To check out <a href="http://www.trulia.com/" class="hiddenLink">current rental listings and homes for sale</a>, go to <a href="http://www.trulia.com">Trulia.com</a>.
+		</div>
+		<div id="uiMap">
+			<span class="radioModule">
+				<div class="radioTitle">Scale</div>
+				<div id="scaleRadio">
+					<input type="radio" id="scale_population" name="scale" checked="checked" /><label for="scale_population">Population</label>
+
+					<input type="radio" id="scale_annual_rent" name="scale" /><label for="scale_annual_rent">Rent Price</label>
+					<input type="radio" id="scale_list_price" name="scale" /><label for="scale_list_price">List Price</label>
+				</div>
+			</span>
+			<span class="radioModule">
+				<div class="radioTitle">Color</div>
+				<div id="colorRadio">
+
+					<input type="radio" id="price_rent_ratio" name="repeat" checked="checked" /><label for="price_rent_ratio">Rent:Buy Ratio</label>
+					<input type="radio" id="annual_rent" name="repeat" /><label for="annual_rent">Rent Price</label>
+					<input type="radio" id="list_price" name="repeat" /><label for="list_price">List Price</label>
+				</div>
+			</span>
+		</div>
+	</div>	
+	<div class="clearBoth" id="clearMapButtons"></div>
+
+	<div id="fig"> 
+    
+    <script type="text/javascript+protovis"> 
+		
+		if (!isIE) {
+			// process all the data
+			processData();
+
+			// do the jquery ui fanciness to the buttons
+			renderUI();
+
+			// set the tooltip defaults
+			initializeTips();
+
+			// render the map in this div
+			initializeMap();	
+		} else {
+			renderIEUI();
+		}
+		
+		
+    </script> 
+	
+  	</div>
+
+	<div id="chartInfographic">
+		<div id="uiChart">
+
+	
+			<span id="leftPicker">
+				<input type="radio" id="left_city" name="leftPick" checked="checked" /><label for="left_city">U.S. Cities Rent:Buy Ratio</label>
+			</span>
+
+			<span id="rightPicker">
+				<input type="radio" id="right_ratio" name="rightPick" /><label for="right_ratio">Rent:Buy Ratio</label>
+				<input type="radio" id="right_rent" name="rightPick" /><label for="right_rent">Rent Price</label>
+				<input type="radio" id="right_buy" name="rightPick" checked="checked" /><label for="right_buy">List Price</label>
+
+				<input type="radio" id="right_unemployment" name="rightPick" /><label for="right_unemployment">Unemployment</label>
+				<input type="radio" id="right_foreclosure" name="rightPick" /><label for="right_foreclosure">Foreclosures</label>
+				<input type="radio" id="right_jobgrowth" name="rightPick" /><label for="right_jobgrowth">Job Growth</label>
+			</span>
+
+		</div>
+		<div id="stackChart">
+    <script type="text/javascript+protovis">
+	
+		if (!isIE) {
+			// render the stacked chart here
+			initializeChart();	
+		}
+    </script>
+
+	</div>
+	</div>
+	<div class="footerText"> 
+			<br />Sources: <a href="http://www.trulia.com">Trulia.com</a>
+		</div> 
+	</div>
+	</body> 
+</html> 
