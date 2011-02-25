@@ -18,7 +18,7 @@ var getWidth = function(d, type) {
 		case "buy":
 			return Math.sqrt(d.buy/100)*18;
 		case "ratio":
-			return d.ratio * 10;
+			return d.ratio * 7;
 		case "foreclosure":
 			return d.foreclosure * 300 + 20;
 		case "unemployment":
