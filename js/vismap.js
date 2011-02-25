@@ -5,7 +5,7 @@ var sim;
 
 var i = 0,
     w = 940,
-    h = 760,
+    h = 710,
     mapMargin = 30,
 	currentColorScale = "price_rent_ratio",
 	currentSizeScale = "scale_population";
@@ -25,7 +25,7 @@ function initializeMap() {
 	var collisionConstraint = pv.Constraint.collision(function(d) { return d.r + 1; }),
 	    positionConstraint = pv.Constraint.position(function(d) { return d.p; }),
 	    linkConstraint = pv.Force.spring(100).links(links),
-		legendRange = pv.range(5,30.1,5);
+		legendRange = pv.range(5,45.1,10);
 
 	var legendScale = pv.Scale.linear()
 	    .domain(14, 35)
@@ -96,10 +96,10 @@ function updateMetric() {
 	nodes.forEach(function(n) {
 		switch (currentSizeScale) {
 			case "scale_annual_rent":
-				n.r = city_stats[n.name].annual_rent / 1000;
+				n.r = city_stats[n.name].annual_rent/1.2;
 				break;
 			case "scale_list_price":
-				n.r = Math.sqrt(city_stats[n.name].list_price / 700);
+				n.r = Math.sqrt(city_stats[n.name].list_price / 18);
 				break;
 			case "scale_population":
 			default:
@@ -122,18 +122,18 @@ function updateLegend() {
 	
 	switch (currentColorScale) {
 		case "price_rent_ratio":
-		    legend.data(pv.range(5,30.1,5))
+		    legend.data(pv.range(10,50.1,10))
 		    	.fillStyle(function(d) { return col(d); });
 			
 			legendText
 			    .text(function(d) { 
 					var stub =  (d+1) + " - " + (d+5);
-					if (d < 10) {
-						return stub + " More affordable to buy";
-					} else if (d > 25) {
-						return stub + " More affordable to rent";
-					} else if (d >= 15 && d < 20) {
-						return stub + " Renting less expensive, but buying might be better";
+					if (d < 30) {
+						return stub + " 买房更合适";
+					} else if (d > 45) {
+						return stub + " 租房更合适";
+					} else if (d >= 35 && d < 40) {
+						return stub + " 租房便宜些, 但还是买吧";
 					} else {
 						return stub;
 					}
@@ -142,19 +142,19 @@ function updateLegend() {
 			break;
 			
 		case "annual_rent": 
-		    legend.data(pv.range(500, 3500, 500))
-		    	.fillStyle(function(d) { return col(d * 12); });
+		    legend.data(pv.range(15, 50, 7))
+		    	.fillStyle(function(d) { return col(d); });
 			
 			legendText
-			    .text(function(d) { return "$" + (d) + " - $" + (d + 500); });
+			    .text(function(d) { return "￥" + (d) + " - ￥" + (d + 7); });
 			break;
 		case "list_price":
 		
-		    legend.data(pv.range(100000, 700000, 100000))
+		    legend.data(pv.range(7000, 27000, 4000))
 			    .fillStyle(function(d) { return col(d); });
 			
 			legendText
-			    .text(function(d) { return monetize(d) + " - " + monetize(d + 100000); });
+			    .text(function(d) { return monetize(d) + " - " + monetize(d + 4000); });
 			break;
 	}
 	

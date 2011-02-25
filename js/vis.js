@@ -152,37 +152,27 @@ function getButtonTooltipText() {
 		var text;
 		switch (type) {
 			case "city":
-				text = "List of the 50 largest U.S. cities in order of Rent:Buy Ratio in Q1 2011";
+				text = "全国32个大中城市房地产租售比列表";
 				break;
 				
 			case "rent":
-				text = "Median annualized rent for two-bedroom apartments, condominiums and townhomes listed on Trulia.com";
+				text = "每平米房租均价";
 				break;
 			case "price":
 			case "buy":
-				text = "Median list price for two-bedroom apartments, condominiums and townhomes listed on Trulia.com";
+				text = "每平米新房均价";
 				break;
 			case "population":
-				text = "Population data from the US Census Bureau (June 2009)";
-				break;
-				
-			case "unemployment":
-				text = "Percentage of labor force in U.S. metro that is unemployed (Source: BLS.gov, Nov 2010)";
-				break;
-				
-			case "jobgrowth":
-				text = "One-year job growth projections for U.S. metros (Source: Moody's Analytics, Dec 2010)";
-				break;
-				
-			case "foreclosure":
-				text = "Total foreclosure filings in a month divided by housing units in a city (Source: RealtyTrac.com, Nov 2010)";
+				text = "各城市人口数量";
 				break;
 			case "ratio":
-				text = "Trulia calculates the price-to-rent ratio for the 50 largest U.S. cities using the median list price compared with the median rent on two-bedroom apartments, condominiums and townhomes listed on Trulia.com";
+				text = "全国大中城市租售比，每平米房价/(每平米房租*12)";
 				break;
+			
 			default:
 				text = "";
 				break;
+			
 		}
 		
 		return text; // "<span class='tooltipButtonText'>" + text + "</span>";
@@ -232,49 +222,49 @@ function col(v, forceType) {
 	var currentType = forceType ? forceType : currentColorScale;
 	
 	// old trulia green to blue
-	// var colors = ["#99ca3c", "#99ca3c", "#84c175", "#74bb98", "#5cb4c2", "#51aee1"];
-	
+	 //var colors = ["#99ca3c", "#99ca3c", "#84c175", "#74bb98", "#5cb4c2", "#51aee1"];
+	//var colors = ["#e5302a", "#002940", "#2c594f", "#998a2f", "#ffa644", "#ffffff"];
 	// colorbrewer red to yellow to green
 	var colors = ["rgb(215,48,39)", "rgb(252,141,89)", "rgb(254,224,139)", "rgb(217,239,139)", "rgb(145,207,97)", "rgb(26,152,80)"];
 	colors.reverse();
 	
 	if (currentType == "price_rent_ratio") {
-	  if (v < 10) return colors[0];
-	  if (v < 15) return colors[1];
-	  if (v < 20) return colors[2];
-	  if (v < 25) return colors[3];
-	  if (v < 30) return colors[4];
-	  if (v < 35) return colors[5];
+	  if (v < 20) return colors[0];
+	  if (v < 25) return colors[1];
+	  if (v < 30) return colors[2];
+	  if (v < 35) return colors[3];
+	  if (v < 40) return colors[4];
+	  if (v < 45) return colors[5];
 	  else return colors[5];
 	} 
 	else if (currentType == "annual_rent") {
-	  if (v < 10000) return colors[0];
-	  if (v < 15000) return colors[1];
-	  if (v < 20000) return colors[2];
-	  if (v < 25000) return colors[3];
-	  if (v < 30000) return colors[4];
-	  if (v < 35000) return colors[5];
+	  if (v < 20) return colors[0];
+	  if (v < 25) return colors[1];
+	  if (v < 30) return colors[2];
+	  if (v < 35) return colors[3];
+	  if (v < 40) return colors[4];
+	  if (v < 45) return colors[5];
 	  else return colors[5];
 	}
 	else if (currentType == "list_price") {
-	  if (v < 100000) return colors[0];
-	  if (v < 200000) return colors[1];
-	  if (v < 30000) return colors[2];
-	  if (v < 400000) return colors[3];
-	  if (v < 500000) return colors[4];
-	  if (v < 6000000) return colors[5];
+	  if (v < 7000) return colors[0];
+	  if (v < 11000) return colors[1];
+	  if (v < 15000) return colors[2];
+	  if (v < 19000) return colors[3];
+	  if (v < 23000) return colors[4];
+	  if (v < 27000) return colors[5];
 	  else 	return colors[5];
 	} 
 };
 
-// round dollar amounts into K and M figures
+// round chinese yuan amounts into 万 and 百万 figures
 function monetize(d, nodollar) {
 
-  var suffix = (d / 1000) > 999 ? (parseInt(d / 100000) / 10) + "M" : 
-		   (d / 1000) >= 1 ? parseInt(d / 1000) + "K" : 
+  var suffix = (d / 10000) > 999 ? (parseInt(d / 100000) / 100) + "千万" : 
+		   (d / 1000) > 999 ? parseInt(d / 1000000) + "百万" : 
 			parseInt(d);
 			
-	var prefix = nodollar ? "" : "$";
+	var prefix = nodollar ? "" : "￥";
 	
 	return prefix + suffix;
 };
@@ -286,7 +276,7 @@ function range(d, increment, money) {
 	if (money) {
 		return monetize(q) + " - " + monetize(q + increment);
 	} else {
-		return "$" + q + " - $" + (q + increment);	
+		return "￥" + q + " - ￥" + (q + increment);	
 	}
 }
 
@@ -294,9 +284,9 @@ function range(d, increment, money) {
 function getText(d, type) {
 	switch(type) {
 		case "rent":
-			return range(d/12, 500);
+			return range(d*60, 200);
 		case "buy":
-			return range(d, 100000, true);
+			return range(d, 200, true);
 		case "ratio":
 			return d;
 		case "unemployment":
@@ -310,20 +300,20 @@ function getText(d, type) {
 
 // convert ratio number to an actual suggestion
 function getRatioSuggestion(ratio) {
-	if (ratio < 10) {
-		return "More affordable to buy";
+	if (ratio < 20) {
+		return "买房合适些";
 	}
-	else if (ratio > 30) {
-		return "Much more affordable to rent";
+	else if (ratio > 40) {
+		return "绝对要租房，买不起啊";
 	}
-	else if (ratio < 15) {
-		return "Affordable to buy";
+	else if (ratio < 25) {
+		return "为了舒服些，还是买房吧";
 	}
-	else if (ratio >= 15 && ratio < 20) {
-		return "Renting is less expensive,<br/>but buying might be better";
+	else if (ratio >= 25 && ratio < 30) {
+		return "租房买房差不多,<br/>一咬牙买了吧";
 	}
-	else if (ratio >= 20) {
-		return "More affordable to rent";
+	else if (ratio >= 30) {
+		return "还是租吧";
 	}
 	else {
 		return "";
@@ -336,13 +326,10 @@ function getTooltip(d, gravity) {
 	
 	return "<div class='tooltip'><div class='tooltipTitle' gravity='" + gravity + "' >" + d.name + "</div>"
 	 + "<div class='tooltipSuggestion'>" + getRatioSuggestion(d.ratio) + "</div>"
-	 + "<br />Rent:Buy Ratio: <span class='tooltipValue'>" + d.ratio + "</span>"
-	 + "<br />Rent: <span class='tooltipValue'>" + range(d.rent / 12, 500) + "</span>"
-	 + "<br />Buy: <span class='tooltipValue'>" + range(d.buy, 100000, true) + "</span>"
-	 + "<br /><br />Population: <span class='tooltipValue'>" + monetize(d.pop, true) + "</span>"
-	 + "<br />Job Growth: <span class='tooltipValue'>" + getText(d.jobgrowth, "jobgrowth") + "</span>"
-	 + "<br />Foreclosure Rate: <span class='tooltipValue'>" + d.foreclosure + "%" + "</span>"
-	 + "<br />Unemployment Rate: <span class='tooltipValue'>" + getText(d.unemployment, "unemployment") + "</span></div>";
+	 + "<br />租售比: <span class='tooltipValue'>" + d.ratio + "</span>"
+	 + "<br />每月房租均价: <span class='tooltipValue'>" + range(d.rent * 60, 200) + "</span>"
+	 + "<br />每平米房价均价: <span class='tooltipValue'>" + range(d.buy, 200, true) + "</span>"
+	 + "<br /><br />人口: <span class='tooltipValue'>" + monetize(d.pop, true) + "</span></div>";
 };
 
 // normalize

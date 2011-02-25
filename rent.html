@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
-    <title>Rent vs. Buy Index</title> 
+    <title>租房vs买房</title> 
     <script type="text/javascript" src="lib/protovis-d3.2.js"></script> 
-    <script type="text/javascript" src="lib/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.5.1.js"></script>
     <script type="text/javascript" src="lib/jquery-ui-1.8.7.custom.min.js"></script> 
     <script type="text/javascript" src="lib/tipsy/jquery.tipsy.js"></script>
     <script type="text/javascript" src="js/tipsy.js"></script>
@@ -30,33 +30,32 @@
 	<div id="header"> 
 	
 		<div id="logo">
-			<a href="http://www.trulia.com/"><img src="images/trulia_logo.png" alt="real estate and apartments for rent" /></a>
-			<span id="title">Rent vs. Buy</span>
+			<a href="http://www.shuguo.org/"><img src="img/logo.png" alt="shuguo's blog" /></a>
+			<span id="title">租房vs买房</span>
 		</div>
 		<div class="clearBoth"></div>
 		<div class="intro">
-			<a href="http://info.trulia.com/index.php?s=43&item=113">Trulia's Q1 2011 Rent vs. Buy Index</a> provides guidance to help you make a smart decision on whether it is better to rent or buy in each of America's 50 largest cities by population. The Rent:Buy Ratio is calculated by using the median list price compared with the median rent on two-bedroom apartments, condos and townhomes listed on <a href="http://www.trulia.com">Trulia.com</a>. Click <a href="http://info.trulia.com/index.php?s=55" target="_new" rel="nofollow">here</a> for the full methodology.
-			<br /><br />
-
-			Click on the tabs above the interactive map to see the differences between renting for a year and buying a similar property. To check out <a href="http://www.trulia.com/" class="hiddenLink">current rental listings and homes for sale</a>, go to <a href="http://www.trulia.com">Trulia.com</a>.
+            <p>买房还是租房? 这是个值得思考的问题.</p>
+            <br /><br />
+			<p>国内房地产泡沫是众所周知的事实，但是理性的从租售比等数据来直观的观察全国大中城市的数据还是有参考意义的。如果按照国际标准，基本所有城市都处于租售不成比例的状态；但对比城市之间的数据，还能够得出一些值得购买的地区。数据来源：国家统计局，城市房产网，搜房网等。</p>
 		</div>
 		<div id="uiMap">
 			<span class="radioModule">
-				<div class="radioTitle">Scale</div>
+				<div class="radioTitle">图形尺寸</div>
 				<div id="scaleRadio">
-					<input type="radio" id="scale_population" name="scale" checked="checked" /><label for="scale_population">Population</label>
+					<input type="radio" id="scale_population" name="scale" checked="checked" /><label for="scale_population">人口</label>
 
-					<input type="radio" id="scale_annual_rent" name="scale" /><label for="scale_annual_rent">Rent Price</label>
-					<input type="radio" id="scale_list_price" name="scale" /><label for="scale_list_price">List Price</label>
+					<input type="radio" id="scale_annual_rent" name="scale" /><label for="scale_annual_rent">房租价格</label>
+					<input type="radio" id="scale_list_price" name="scale" /><label for="scale_list_price">买房价格</label>
 				</div>
 			</span>
 			<span class="radioModule">
-				<div class="radioTitle">Color</div>
+				<div class="radioTitle">颜色</div>
 				<div id="colorRadio">
 
-					<input type="radio" id="price_rent_ratio" name="repeat" checked="checked" /><label for="price_rent_ratio">Rent:Buy Ratio</label>
-					<input type="radio" id="annual_rent" name="repeat" /><label for="annual_rent">Rent Price</label>
-					<input type="radio" id="list_price" name="repeat" /><label for="list_price">List Price</label>
+					<input type="radio" id="price_rent_ratio" name="repeat" checked="checked" /><label for="price_rent_ratio">租售比</label>
+					<input type="radio" id="annual_rent" name="repeat" /><label for="annual_rent">房租价格</label>
+					<input type="radio" id="list_price" name="repeat" /><label for="list_price">买房价格</label>
 				</div>
 			</span>
 		</div>
@@ -93,17 +92,13 @@
 
 	
 			<span id="leftPicker">
-				<input type="radio" id="left_city" name="leftPick" checked="checked" /><label for="left_city">U.S. Cities Rent:Buy Ratio</label>
+				<input type="radio" id="left_city" name="leftPick" checked="checked" /><label for="left_city">全国房价租售比</label>
 			</span>
 
 			<span id="rightPicker">
-				<input type="radio" id="right_ratio" name="rightPick" /><label for="right_ratio">Rent:Buy Ratio</label>
-				<input type="radio" id="right_rent" name="rightPick" /><label for="right_rent">Rent Price</label>
-				<input type="radio" id="right_buy" name="rightPick" checked="checked" /><label for="right_buy">List Price</label>
-
-				<input type="radio" id="right_unemployment" name="rightPick" /><label for="right_unemployment">Unemployment</label>
-				<input type="radio" id="right_foreclosure" name="rightPick" /><label for="right_foreclosure">Foreclosures</label>
-				<input type="radio" id="right_jobgrowth" name="rightPick" /><label for="right_jobgrowth">Job Growth</label>
+				<input type="radio" id="right_ratio" name="rightPick" /><label for="right_ratio">租售比</label>
+				<input type="radio" id="right_rent" name="rightPick" /><label for="right_rent">租房价格</label>
+				<input type="radio" id="right_buy" name="rightPick" checked="checked" /><label for="right_buy">买房价格</label>
 			</span>
 
 		</div>
@@ -119,7 +114,7 @@
 	</div>
 	</div>
 	<div class="footerText"> 
-			<br />Sources: <a href="http://www.trulia.com">Trulia.com</a>
+			<br />Modified: <a href="http://www.shuguo.org">SHUGUO</a>; Original:<a href="http://trulia.movity.com/rentvsbuy/">source</a>
 		</div> 
 	</div>
 	</body> 

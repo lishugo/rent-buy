@@ -14,9 +14,9 @@ var getHeight = function(d) {
 var getWidth = function(d, type) { 
 	switch(type) {
 		case "rent":
-			return Math.sqrt(d.rent/10) * 5.5;
+			return Math.sqrt(d.rent) * 40;
 		case "buy":
-			return Math.sqrt(d.buy/100) * 3;
+			return Math.sqrt(d.buy/100)*18;
 		case "ratio":
 			return d.ratio * 10;
 		case "foreclosure":
@@ -54,7 +54,7 @@ function initializeChart() {
 	
 	chart = new pv.Panel()
 		.width(w)
-		.height(1000)
+		.height(1480)
 		.top(50)
 		.bottom(50);
 		

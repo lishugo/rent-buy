@@ -26,13 +26,13 @@
 	{ name:'西宁', location:{ lat:36.617085, lng:101.778208} },
 	{ name:'银川', location:{ lat:38.487194, lng:106.230909} },
 	{ name:'乌鲁木齐', location:{ lat:43.825666, lng:87.617298} },
-	{ name:'秦皇岛', location:{ lat:39.935377, lng:119.600492} },
+//	{ name:'秦皇岛', location:{ lat:39.935377, lng:119.600492} },
 	{ name:'吉林', location:{ lat:43.837883, lng:126.549572} },
 	{ name:'牡丹江', location:{ lat:44.551439, lng:129.632076} },
 	{ name:'无锡', location:{ lat:31.566145, lng:120.303027} },
 	{ name:'温州', location:{ lat:27.994267, lng:120.699367} },
 	{ name:'烟台', location:{ lat:37.463819, lng:121.447926} },
-	{ name:'三亚', location:{ lat:18.252847, lng:109.511909} },
+//	{ name:'三亚', location:{ lat:18.252847, lng:109.511909} },
 	
 
 	//{ name:'石家庄', location:{ lat:, lng:} },
